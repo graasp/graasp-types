@@ -1,8 +1,12 @@
 import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
 import { Item } from './interfaces/item';
+import { ItemTaskManager } from './interfaces/item-task-manager';
 declare module 'fastify' {
     interface FastifyInstance {
-        itemService: ItemService;
+        items: {
+            taskManager: ItemTaskManager;
+            dbService: ItemService;
+        };
     }
 }
 /**
@@ -16,7 +20,7 @@ export declare class ItemService {
      * @param id Item id
      * @param transactionHandler Database transaction handler
      */
-    get(id: string, transactionHandler: TrxHandler): Promise<Item>;
+    get<T extends Item>(id: string, transactionHandler: TrxHandler): Promise<T>;
     /**
      * Get item matching the given `path` or `null`, if not found.
      * @param path Item path
@@ -34,14 +38,14 @@ export declare class ItemService {
      * @param item Item to create
      * @param transactionHandler Database transaction handler
      */
-    create(item: Partial<Item>, transactionHandler: TrxHandler): Promise<Item>;
+    create<T extends Item>(item: Partial<Item>, transactionHandler: TrxHandler): Promise<T>;
     /**
      * Update item with given changes and return it.
      * @param id Item id
      * @param data Item changes
      * @param transactionHandler Database transaction handler
      */
-    update(id: string, data: Partial<Item>, transactionHandler: TrxHandler): Promise<Item>;
+    update<T extends Item>(id: string, data: Partial<T>, transactionHandler: TrxHandler): Promise<T>;
     /**
      * Delete item matching the given `id`. Return item, or `null`, if delete has no effect.
      *
@@ -82,10 +86,9 @@ export declare class ItemService {
      * * `1`: children
      * * `2`: children + grandchildren
      * * `3`: children + grandchildren + great-grandchildren
-     * @param properties List of Item properties to fetch - returns all if not defined. When defined,
-     * the function should be called with `R` as `<Partial<Item>>`: `getDescendants<Partial<Item>>()`
+     * @param properties List of Item properties to fetch - returns all if not defined.
      */
-    getDescendants(item: Item, transactionHandler: TrxHandler, direction?: ('ASC' | 'DESC'), levels?: number | 'ALL', properties?: (keyof Item)[]): Promise<Partial<Item>[]>;
+    getDescendants<T extends Partial<Item>>(item: Item, transactionHandler: TrxHandler, direction?: ('ASC' | 'DESC'), levels?: number | 'ALL', properties?: (keyof T & string)[]): Promise<T[]>;
     /**
      * Get number of levels to farthest child.
      * @param item Item from where to start
