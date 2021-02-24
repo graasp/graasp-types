@@ -1,8 +1,12 @@
 import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
 import { Member } from './interfaces/member';
+import { MemberTaskManager } from './interfaces/member-task-manager';
 declare module 'fastify' {
     interface FastifyInstance {
-        memberService: MemberService;
+        members: {
+            taskManager: MemberTaskManager;
+            dbService: MemberService;
+        };
     }
 }
 /**
@@ -17,18 +21,18 @@ export declare class MemberService {
      * @param dbHandler Database handler
      * @param properties List of Member properties to fetch - defaults to 'all'
      */
-    getMatching(member: Partial<Member>, dbHandler: TrxHandler, properties?: (keyof Member)[]): Promise<Partial<Member>[]>;
+    getMatching<T extends Partial<Member>>(member: Partial<Member>, dbHandler: TrxHandler, properties?: (keyof T & string)[]): Promise<T[]>;
     /**
      * Get member matching the given `id` or `null`, if not found.
      * @param id Member's id
      * @param dbHandler Database handler
      * @param properties List of Member properties to fetch - defaults to 'all'
      */
-    get(id: string, dbHandler: TrxHandler, properties?: (keyof Member)[]): Promise<Partial<Member>>;
+    get<T extends Partial<Member>>(id: string, dbHandler: TrxHandler, properties?: (keyof T & string)[]): Promise<T>;
     /**
      * Create member and return it.
      * @param member Member to create
      * @param transactionHandler Database transaction handler
      */
-    create(member: Partial<Member>, transactionHandler: TrxHandler): Promise<Member>;
+    create<T extends Member>(member: Partial<Member>, transactionHandler: TrxHandler): Promise<T>;
 }

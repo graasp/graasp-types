@@ -2,9 +2,13 @@ import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
 import { Item } from '../../services/items/interfaces/item';
 import { Member } from '../../services/members/interfaces/member';
 import { ItemMembership, PermissionLevel } from './interfaces/item-membership';
+import { ItemMembershipTaskManager } from './interfaces/item-membership-task-manager';
 declare module 'fastify' {
     interface FastifyInstance {
-        itemMembershipService: ItemMembershipService;
+        itemMemberships: {
+            taskManager: ItemMembershipTaskManager;
+            dbService: ItemMembershipService;
+        };
     }
 }
 export declare class ItemMembershipService {
