@@ -1,8 +1,10 @@
+import { Session } from 'fastify-secure-session';
 import { Actor } from '../../../interfaces/actor';
 import { UnknownExtra } from '../../../interfaces/extra';
 declare module 'fastify' {
     interface FastifyRequest {
         member: Member;
+        session: Session;
     }
 }
 export declare enum MemberType {

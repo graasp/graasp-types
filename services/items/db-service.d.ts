@@ -1,4 +1,5 @@
 import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
+import { UnknownExtra } from '../../interfaces/extra';
 import { Item } from './interfaces/item';
 import { ItemTaskManager } from './interfaces/item-task-manager';
 declare module 'fastify' {
@@ -20,13 +21,13 @@ export declare class ItemService {
      * @param id Item id
      * @param transactionHandler Database transaction handler
      */
-    get<T extends Item>(id: string, transactionHandler: TrxHandler): Promise<T>;
+    get<E extends UnknownExtra>(id: string, transactionHandler: TrxHandler): Promise<Item<E>>;
     /**
      * Get item matching the given `path` or `null`, if not found.
      * @param path Item path
      * @param transactionHandler Database transaction handler
      */
-    getMatchingPath(path: string, transactionHandler: TrxHandler): Promise<Item>;
+    getMatchingPath<E extends UnknownExtra>(path: string, transactionHandler: TrxHandler): Promise<Item<E>>;
     /**
      * Get items matching the given `ids` or `[]`, if none is found.
      * @param ids Item ids
@@ -38,14 +39,14 @@ export declare class ItemService {
      * @param item Item to create
      * @param transactionHandler Database transaction handler
      */
-    create<T extends Item>(item: Partial<Item>, transactionHandler: TrxHandler): Promise<T>;
+    create<E extends UnknownExtra>(item: Partial<Item<E>>, transactionHandler: TrxHandler): Promise<Item<E>>;
     /**
      * Update item with given changes and return it.
      * @param id Item id
      * @param data Item changes
      * @param transactionHandler Database transaction handler
      */
-    update<T extends Item>(id: string, data: Partial<T>, transactionHandler: TrxHandler): Promise<T>;
+    update<E extends UnknownExtra>(id: string, data: Partial<Item<E>>, transactionHandler: TrxHandler): Promise<Item<E>>;
     /**
      * Delete item matching the given `id`. Return item, or `null`, if delete has no effect.
      *
@@ -54,7 +55,7 @@ export declare class ItemService {
      * @param id Item id
      * @param transactionHandler Database transaction handler
      */
-    delete(id: string, transactionHandler: TrxHandler): Promise<Item>;
+    delete<E extends UnknownExtra>(id: string, transactionHandler: TrxHandler): Promise<Item<E>>;
     /**
      * Get number of children of given item.
      * @param item Item's children to count
@@ -88,7 +89,7 @@ export declare class ItemService {
      * * `3`: children + grandchildren + great-grandchildren
      * @param properties List of Item properties to fetch - returns all if not defined.
      */
-    getDescendants<T extends Partial<Item>>(item: Item, transactionHandler: TrxHandler, direction?: ('ASC' | 'DESC'), levels?: number | 'ALL', properties?: (keyof T & string)[]): Promise<T[]>;
+    getDescendants(item: Item, transactionHandler: TrxHandler, direction?: ('ASC' | 'DESC'), levels?: number | 'ALL', properties?: (keyof Item)[]): Promise<Item[]>;
     /**
      * Get number of levels to farthest child.
      * @param item Item from where to start
