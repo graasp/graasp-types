@@ -36,4 +36,11 @@ export declare class MemberService {
      * @param transactionHandler Database transaction handler
      */
     create<E extends UnknownExtra>(member: Partial<Member<E>>, transactionHandler: TrxHandler): Promise<Member<E>>;
+    /**
+     * Update member with given changes and return it.
+     * @param id Member id
+     * @param data Member changes
+     * @param transactionHandler Database transaction handler
+     */
+    update<E extends UnknownExtra>(id: string, data: Partial<Member<E>>, transactionHandler: TrxHandler): Promise<Member<E>>;
 }

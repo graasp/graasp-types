@@ -57,6 +57,9 @@ export declare class InvalidMoveTarget extends BaseGraaspError {
 export declare class MemberNotFound extends BaseGraaspError {
     constructor(data?: unknown);
 }
+export declare class CannotModifyOtherMembers extends BaseGraaspError {
+    constructor(data?: unknown);
+}
 export declare class DatabaseError extends BaseGraaspError {
     constructor(data?: unknown);
 }

@@ -14,30 +14,30 @@ declare module 'fastify' {
 export declare class ItemMembershipService {
     private static allColumns;
     /**
-     * Get the permission level of a membership given the `member` and `item`.
-     * @param member Member in membership
+     * Get the permission level of a membership given the `memberId` and `item`.
+     * @param memberId Id of member in membership
      * @param item Item whose path is referenced in membership
      * @param transactionHandler Database transaction handler
      */
-    getPermissionLevel(member: Member, item: Item, transactionHandler: TrxHandler): Promise<PermissionLevel>;
+    getPermissionLevel(memberId: string, item: Item, transactionHandler: TrxHandler): Promise<PermissionLevel>;
     /**
-     * Get the 'best/nearest' membership to the given `item` for `member`.
+     * Get the 'best/nearest' membership to the given `item` for `memberId`.
      * If `includeOwn`, also include membership targeting this `member`+`item`.
-     * @param member Member in membership
+     * @param memberId Id of member in membership
      * @param item Item whose path should be considered
      * @param transactionHandler Database transaction handler
      * @param considerLocal Also consider a (possible) membership targeting this `item` for this `member`
      */
-    getInherited(member: Member, item: Item, transactionHandler: TrxHandler, considerLocal?: boolean): Promise<ItemMembership>;
+    getInherited(memberId: string, item: Item, transactionHandler: TrxHandler, considerLocal?: boolean): Promise<ItemMembership>;
     /**
-     * Get all memberships "below" the given `item`'s path, for the given `member`, ordered by
+     * Get all memberships "below" the given `item`'s path, for the member with the given `memberId`, ordered by
      * longest to shortest path - lowest in the (sub)tree to highest in the (sub)tree.
-     * @param member Member in membership
+     * @param memberId Id of member in membership
      * @param item Item whose path should be considered
      * @param transactionHandler Database transaction handler
      * @param considerLocal Also consider a (possible) membership targeting this `item` for this `member`
      */
-    getAllBelow(member: Member, item: Item, transactionHandler: TrxHandler, considerLocal?: boolean): Promise<ItemMembership[]>;
+    getAllBelow(memberId: string, item: Item, transactionHandler: TrxHandler, considerLocal?: boolean): Promise<ItemMembership[]>;
     /**
      * Get all the 'best/nearest' memberships for the given `item` for each member
      * with access to it.
@@ -46,26 +46,26 @@ export declare class ItemMembershipService {
      */
     getInheritedForAll(item: Item, transactionHandler: TrxHandler): Promise<ItemMembership[]>;
     /**
-     * Check if given `member` can `read` given `item`.
-     * @param member Member
+     * Check if member w/ given `memberId` can `read` given `item`.
+     * @param memberId Id of member in membership
      * @param item Item
      * @param transactionHandler Database transaction handler
      */
-    canRead(member: Member, item: Item, transactionHandler: TrxHandler): Promise<boolean>;
+    canRead(memberId: string, item: Item, transactionHandler: TrxHandler): Promise<boolean>;
     /**
-     * Check if given `member` can `write` given `item`.
-     * @param member Member
+     * Check if member w/ given `memberId` can `write` given `item`.
+     * @param memberId Id of member in membership
      * @param item Item
      * @param transactionHandler Database transaction handler
      */
-    canWrite(member: Member, item: Item, transactionHandler: TrxHandler): Promise<boolean>;
+    canWrite(memberId: string, item: Item, transactionHandler: TrxHandler): Promise<boolean>;
     /**
-     * Check if given `member` can `admin` given `item`.
-     * @param member Member
+     * Check if member w/ given `memberId` can `admin` given `item`.
+     * @param memberId Id of member in membership
      * @param item Item
      * @param transactionHandler Database transaction handler
      */
-    canAdmin(member: Member, item: Item, transactionHandler: TrxHandler): Promise<boolean>;
+    canAdmin(memberId: string, item: Item, transactionHandler: TrxHandler): Promise<boolean>;
     /**
      * Get membership by its `id`.
      * @param id Membership unique id
