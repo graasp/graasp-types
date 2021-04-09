@@ -1,3 +1,4 @@
+import { ObjectSchema } from 'fluent-json-schema';
 import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
 import { UnknownExtra } from '../../interfaces/extra';
 import { Item } from './interfaces/item';
@@ -7,6 +8,7 @@ declare module 'fastify' {
         items: {
             taskManager: ItemTaskManager;
             dbService: ItemService;
+            extendCreateSchema: (itemTypeSchema?: ObjectSchema) => void;
         };
     }
 }
