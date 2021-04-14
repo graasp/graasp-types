@@ -19,3 +19,4 @@ export * from './interfaces/task-runner';
 export * from './interfaces/task';
 export { GraaspError, GraaspErrorDetails } from './util/graasp-error';
 export { DatabaseTransactionHandler, Database } from './plugins/database';
+export * from './plugins/auth/interfaces/auth';
