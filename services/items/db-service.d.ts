@@ -108,12 +108,19 @@ export declare class ItemService {
     getOwn(memberId: string, transactionHandler: TrxHandler): Promise<Item[]>;
     /**
      * Get items "shared with" `member` - "highest" items in the membership tree where `member`
-     * is not the creator of the item
+     * is not admin or `member` is admin but not the item creator
      * @param memberId Member's id
      * @param transactionHandler Database transaction handler
      * TODO: does this make sense here? Should this be part of different (micro)service??
      */
     getSharedWith(memberId: string, transactionHandler: TrxHandler): Promise<Item[]>;
+    /**
+     * Get list of members (ids) that *might* have item with given `itemPath` in their shared items.
+     * @param itemPath Item path
+     * @param transactionHandler Database transaction handler
+     * @returns Array of memberIds (empty or w/ memberIds/strings)
+     */
+    membersWithSharedItem(itemPath: string, transactionHandler: TrxHandler): Promise<readonly string[]>;
     /**
      * Move item, and its underlying tree, below another item.
      * Or make it a "new" tree if `parentItem` is not provided.
