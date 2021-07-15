@@ -12,7 +12,7 @@ export interface Database {
 }
 interface DatabasePluginOptions {
     uri: string;
-    logs: string;
+    logs: boolean;
 }
 declare const plugin: FastifyPluginAsync<DatabasePluginOptions>;
 export default plugin;
