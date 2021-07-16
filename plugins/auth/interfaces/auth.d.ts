@@ -5,7 +5,7 @@ declare module 'fastify' {
     }
     interface FastifyInstance {
         corsPluginOptions: {
-            origin: [];
+            origin: (string | RegExp)[];
             credentials: boolean;
             maxAge: number;
         };
