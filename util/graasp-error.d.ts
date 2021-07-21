@@ -60,6 +60,9 @@ export declare class MemberNotFound extends BaseGraaspError {
 export declare class CannotModifyOtherMembers extends BaseGraaspError {
     constructor(data?: unknown);
 }
+export declare class TooManyMemberships extends BaseGraaspError {
+    constructor(data?: unknown);
+}
 export declare class DatabaseError extends BaseGraaspError {
     constructor(data?: unknown);
 }

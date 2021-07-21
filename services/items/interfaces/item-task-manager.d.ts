@@ -18,7 +18,7 @@ export interface ItemTaskManager<A extends Actor = Actor> {
     createDeleteTask(actor: A, objectId: string, extra?: unknown): Task<A, Item>;
     createMoveTask(actor: Actor, itemId: string, parentId?: string): Task<A, Item>;
     createCopyTask(actor: Actor, itemId: string, parentId?: string): Task<A, Item>;
-    createGetChildrenTask(actor: Actor, itemId: string): Task<A, Item[]>;
+    createGetChildrenTask(actor: Actor, itemId: string, ordered?: boolean): Task<A, Item[]>;
     createGetOwnTask(actor: Actor): Task<A, Item[]>;
     createGetSharedWithTask(actor: Actor): Task<A, Item[]>;
 }

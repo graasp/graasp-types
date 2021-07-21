@@ -40,6 +40,13 @@ export declare class ItemMembershipService {
      */
     getAllBelow(memberId: string, item: Item, transactionHandler: TrxHandler, considerLocal?: boolean): Promise<ItemMembership[]>;
     /**
+     * Get all memberships on given `item`'s subtree, ordered by
+     * longest to shortest path - lowest in the (sub)tree to highest in the (sub)tree.
+     * @param item Item whose path should be considered
+     * @param transactionHandler Database transaction handler
+     */
+    getAllInSubtree(item: Item, transactionHandler: TrxHandler): Promise<ItemMembership[]>;
+    /**
      * Get all the 'best/nearest' memberships for the given `item` for each member
      * with access to it.
      * @param item Item whose path should be considered
