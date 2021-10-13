@@ -21,13 +21,13 @@ export declare abstract class BaseGraaspError implements GraaspError {
 export declare class ItemNotFound extends BaseGraaspError {
     constructor(data?: unknown);
 }
-export declare class UserCannotReadItem extends BaseGraaspError {
+export declare class MemberCannotReadItem extends BaseGraaspError {
     constructor(data?: unknown);
 }
-export declare class UserCannotWriteItem extends BaseGraaspError {
+export declare class MemberCannotWriteItem extends BaseGraaspError {
     constructor(data?: unknown);
 }
-export declare class UserCannotAdminItem extends BaseGraaspError {
+export declare class MemberCannotAdminItem extends BaseGraaspError {
     constructor(data?: unknown);
 }
 export declare class InvalidMembership extends BaseGraaspError {
@@ -61,6 +61,9 @@ export declare class CannotModifyOtherMembers extends BaseGraaspError {
     constructor(data?: unknown);
 }
 export declare class TooManyMemberships extends BaseGraaspError {
+    constructor(data?: unknown);
+}
+export declare class MemberCannotAccess extends BaseGraaspError {
     constructor(data?: unknown);
 }
 export declare class DatabaseError extends BaseGraaspError {

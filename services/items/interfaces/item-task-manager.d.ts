@@ -1,5 +1,4 @@
 import { Actor } from '../../../interfaces/actor';
-import { UnknownExtra } from '../../../interfaces/extra';
 import { Task } from '../../../interfaces/task';
 import { Item } from './item';
 export interface ItemTaskManager<A extends Actor = Actor> {
@@ -12,13 +11,13 @@ export interface ItemTaskManager<A extends Actor = Actor> {
     getGetChildrenTaskName(): string;
     getGetOwnTaskName(): string;
     getGetSharedWithTaskName(): string;
-    createCreateTask<E extends UnknownExtra>(actor: A, object: Partial<Item<E>>, extra?: unknown): Task<A, Item<E>>;
-    createGetTask<E extends UnknownExtra>(actor: A, objectId: string): Task<A, Item<E>>;
-    createUpdateTask<E extends UnknownExtra>(actor: A, objectId: string, object: Partial<Item<E>>): Task<A, Item<E>>;
-    createDeleteTask(actor: A, objectId: string, extra?: unknown): Task<A, Item>;
-    createMoveTask(actor: Actor, itemId: string, parentId?: string): Task<A, Item>;
-    createCopyTask(actor: Actor, itemId: string, parentId?: string): Task<A, Item>;
-    createGetChildrenTask(actor: Actor, itemId: string, ordered?: boolean): Task<A, Item[]>;
+    createCreateTaskSequence(actor: A, object: Partial<Item>, extra?: unknown): Task<A, unknown>[];
+    createGetTaskSequence(actor: A, objectId: string): Task<Actor, unknown>[];
+    createUpdateTaskSequence(actor: A, objectId: string, object: Partial<Item>): Task<A, unknown>[];
+    createDeleteTaskSequence(actor: A, objectId: string, extra?: unknown): Task<A, unknown>[];
+    createMoveTaskSequence(actor: Actor, itemId: string, parentId?: string): Task<A, unknown>[];
+    createCopyTaskSequence(actor: Actor, itemId: string, parentId?: string): Task<A, unknown>[];
+    createGetChildrenTaskSequence(actor: Actor, itemId: string, ordered?: boolean): Task<A, unknown>[];
     createGetOwnTask(actor: Actor): Task<A, Item[]>;
     createGetSharedWithTask(actor: Actor): Task<A, Item[]>;
 }
