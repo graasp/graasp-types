@@ -1,5 +1,5 @@
 import { ObjectSchema } from 'fluent-json-schema';
-import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
+import { DatabaseTransactionConnectionType as TrxHandler, ValueExpressionType } from 'slonik';
 import { UnknownExtra } from '../../interfaces/extra';
 import { Item } from './interfaces/item';
 import { ItemTaskManager } from './interfaces/item-task-manager';
@@ -50,6 +50,7 @@ export declare class ItemService {
      * @param transactionHandler Database transaction handler
      */
     update<E extends UnknownExtra>(id: string, data: Partial<Item<E>>, transactionHandler: TrxHandler): Promise<Item<E>>;
+    buildColumnsForUpdate<E extends UnknownExtra>(key: string, data: Partial<Item<E>>): ValueExpressionType;
     /**
      * Delete item matching the given `id`. Return item, or `null`, if delete has no effect.
      *
@@ -92,7 +93,7 @@ export declare class ItemService {
      * * `3`: children + grandchildren + great-grandchildren
      * @param properties List of Item properties to fetch - returns all if not defined.
      */
-    getDescendants(item: Item, transactionHandler: TrxHandler, direction?: ('ASC' | 'DESC'), levels?: number | 'ALL', properties?: (keyof Item)[]): Promise<Item[]>;
+    getDescendants(item: Item, transactionHandler: TrxHandler, direction?: 'ASC' | 'DESC', levels?: number | 'ALL', properties?: (keyof Item)[]): Promise<Item[]>;
     /**
      * Get number of levels to farthest child.
      * @param item Item from where to start
