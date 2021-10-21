@@ -11,10 +11,12 @@ export interface ItemTaskManager<A extends Actor = Actor> {
     getGetChildrenTaskName(): string;
     getGetOwnTaskName(): string;
     getGetSharedWithTaskName(): string;
+
     createCreateTaskSequence(actor: A, object: Partial<Item>, extra?: unknown): Task<A, unknown>[];
     createGetTask(actor: A, objectId: string): Task<Actor, unknown>;
     createGetTaskSequence(actor: A, objectId: string): Task<Actor, unknown>[];
     createUpdateTaskSequence(actor: A, objectId: string, object: Partial<Item>): Task<A, unknown>[];
+    createDeleteTask(actor: A, objectId: string): Task<A, unknown>;
     createDeleteTaskSequence(actor: A, objectId: string, extra?: unknown): Task<A, unknown>[];
     createMoveTaskSequence(actor: Actor, itemId: string, parentId?: string): Task<A, unknown>[];
     createCopyTaskSequence(actor: Actor, itemId: string, parentId?: string): Task<A, unknown>[];

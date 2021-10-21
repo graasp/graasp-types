@@ -1,6 +1,7 @@
 import { Actor } from '../../../interfaces/actor';
 import { Task } from '../../../interfaces/task';
-import { ItemMembership } from './item-membership';
+import { Item } from '../../items/interfaces/item';
+import { ItemMembership, PermissionLevel } from './item-membership';
 export interface ItemMembershipTaskManager<A extends Actor = Actor> {
     getCreateTaskName(): string;
     getGetTaskName(): string;
@@ -14,5 +15,5 @@ export interface ItemMembershipTaskManager<A extends Actor = Actor> {
     createDeleteTaskSequence(actor: A, objectId: string, extra?: unknown): Task<A, unknown>[];
     createGetOfItemTaskSequence(actor: A, itemId: string): Task<A, unknown>[];
     createDeleteAllOnAndBelowItemTaskSequence(actor: A, itemId: string): Task<A, unknown>[];
-    createGetMemberItemMembershipTask(actor: A): Task<A, ItemMembership>;
+    createGetMemberItemMembershipTask(actor: A, input?: { item?: Item, validatePermission?: PermissionLevel }): Task<A, ItemMembership>;
 }
