@@ -4,3 +4,6 @@ export declare type Anything = string | number | boolean | null | undefined | An
 export interface UnknownExtra {
     [key: string]: Anything;
 }
+export interface Serializable {
+    [key: string]: Anything;
+}
