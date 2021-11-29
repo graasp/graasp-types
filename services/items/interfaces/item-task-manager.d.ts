@@ -20,8 +20,8 @@ export interface ItemTaskManager<A extends Actor = Actor> {
     createDeleteTask(actor: A, item?: Item): Task<A, unknown>;
     createDeleteTaskSequence(actor: A, objectId: string, extra?: unknown): Task<A, unknown>[];
     createMoveTaskSequence(actor: Actor, itemId: string, parentId?: string): Task<A, unknown>[];
-    createCopyTaskSequence(actor: Actor, itemId: string, parentId?: string): Task<A, unknown>[];
-    createCopySubTaskSequence(actor: Actor, itemTask: Task<A, Item>, parentId?: string): Task<A, unknown>[];
+    createCopyTaskSequence(actor: Actor, itemId: string, options: { parentId?: string, shouldCopyTags?: boolean }): Task<A, unknown>[];
+    createCopySubTaskSequence(actor: Actor, itemTask: Task<A, Item>, options: { parentId?: string, shouldCopyTags?: boolean }): Task<A, unknown>[];
     createGetChildrenTask(actor: Actor, input: { itemId?: string, ordered?: boolean }): Task<A, Item<UnknownExtra>[]>;
     createGetChildrenTaskSequence(actor: Actor, itemId: string, ordered?: boolean): Task<A, unknown>[];
     createGetOwnTask(actor: Actor): Task<A, Item[]>;

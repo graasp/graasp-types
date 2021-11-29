@@ -4,4 +4,5 @@ export interface ItemMoveHookHandlerExtraData {
 }
 export interface ItemCopyHookHandlerExtraData {
     original: Item;
+    shouldCopyTags?: boolean
 }

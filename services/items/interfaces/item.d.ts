@@ -12,6 +12,6 @@ export interface Item<T extends UnknownExtra = UnknownExtra> {
     updatedAt: string;
 }
 export interface ItemSettings extends Serializable {
-    isPinned: boolean;
-    showChatBox: boolean;
+    isPinned?: boolean;
+    showChatBox?: boolean;
 }
