@@ -14,6 +14,7 @@ export interface ItemMembershipTaskManager<A extends Actor = Actor> {
     createUpdateTaskSequence(actor: A, objectId: string, object: Partial<ItemMembership>): Task<A, unknown>[];
     createDeleteTaskSequence(actor: A, objectId: string, extra?: unknown): Task<A, unknown>[];
     createGetOfItemTask(member: A, item?: Item): Task<A, unknown>;
+    createGetOfManyItemsTask(member: A, items?: Item[]): Task<A, unknown>;
     createGetOfItemTaskSequence(actor: A, itemId: string): Task<A, unknown>[];
     createDeleteAllOnAndBelowItemTaskSequence(actor: A, itemId: string): Task<A, unknown>[];
     createGetMemberItemMembershipTask(actor: A, input?: { item?: Item, validatePermission?: PermissionLevel }): Task<A, ItemMembership>;
