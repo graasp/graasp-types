@@ -26,4 +26,5 @@ export interface ItemTaskManager<A extends Actor = Actor> {
     createGetChildrenTaskSequence(actor: Actor, itemId: string, ordered?: boolean): Task<A, unknown>[];
     createGetOwnTask(actor: Actor): Task<A, Item[]>;
     createGetSharedWithTask(actor: Actor): Task<A, Item[]>;
+    createGetManyTask(member: Actor, itemIds?: string[]): Task<Actor, unknown>;
 }
