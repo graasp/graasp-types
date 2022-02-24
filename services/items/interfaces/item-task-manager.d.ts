@@ -5,6 +5,7 @@ import { Item } from './item';
 export interface ItemTaskManager<A extends Actor = Actor> {
     getCreateTaskName(): string;
     getGetTaskName(): string;
+    getGetManyTaskName(): string;
     getUpdateTaskName(): string;
     getDeleteTaskName(): string;
     getMoveTaskName(): string;
