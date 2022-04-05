@@ -1,4 +1,4 @@
 # Graasp types
 
-This repos contains type declarations for Graasp.
+This repository contains type declarations for Graasp.
 
