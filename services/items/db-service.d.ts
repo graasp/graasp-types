@@ -8,16 +8,6 @@ import { UnknownExtra } from '../../interfaces/extra';
 import { Item } from './interfaces/item';
 import { ItemTaskManager } from './interfaces/item-task-manager';
 
-declare module 'fastify' {
-  interface FastifyInstance {
-    items: {
-      taskManager: ItemTaskManager;
-      dbService: ItemService;
-      extendCreateSchema: (itemTypeSchema?: ObjectSchema) => void;
-      extendExtrasUpdateSchema: (itemTypeSchema?: ObjectSchema) => void;
-    };
-  }
-}
 /**
  * Database's first layer of abstraction for Items
  */

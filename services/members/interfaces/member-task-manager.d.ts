@@ -32,6 +32,9 @@ export interface MemberTaskManager<A extends Actor = Actor> {
     objectId: string,
     extra?: unknown,
   ): Task<A, Member<E>>;
-  createDeleteTaskSequence(actor: Actor, memberId: string): Task<Actor, unknown>[];
+  createDeleteTaskSequence(
+    actor: Actor,
+    memberId: string,
+  ): Task<Actor, unknown>[];
   createGetByTask(actor: A, data: Partial<Member>): Task<A, Member[]>;
 }

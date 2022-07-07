@@ -2,16 +2,7 @@ import { DatabaseTransactionConnectionType as TrxHandler } from 'slonik';
 
 import { UnknownExtra } from '../../interfaces/extra';
 import { Member } from './interfaces/member';
-import { MemberTaskManager } from './interfaces/member-task-manager';
 
-declare module 'fastify' {
-  interface FastifyInstance {
-    members: {
-      taskManager: MemberTaskManager;
-      dbService: MemberService;
-    };
-  }
-}
 /**
  * Database's first layer of abstraction for Members
  */
@@ -58,6 +49,16 @@ export declare class MemberService {
   update<E extends UnknownExtra>(
     id: string,
     data: Partial<Member<E>>,
+    transactionHandler: TrxHandler,
+  ): Promise<Member<E>>;
+
+  /**
+   * Delete member
+   * @param id Member id
+   * @param transactionHandler Database transaction handler
+   */
+  delete<E extends UnknownExtra>(
+    id: string,
     transactionHandler: TrxHandler,
   ): Promise<Member<E>>;
 }

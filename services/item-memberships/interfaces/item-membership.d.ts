@@ -1,7 +1,7 @@
 export enum PermissionLevel {
-  Read = "read",
-  Write = "write",
-  Admin = "admin"
+  Read = 'read',
+  Write = 'write',
+  Admin = 'admin',
 }
 
 export declare class PermissionLevelCompare {

@@ -5,14 +5,6 @@ import { Member } from '../../services/members/interfaces/member';
 import { ItemMembership, PermissionLevel } from './interfaces/item-membership';
 import { ItemMembershipTaskManager } from './interfaces/item-membership-task-manager';
 
-declare module 'fastify' {
-  interface FastifyInstance {
-    itemMemberships: {
-      taskManager: ItemMembershipTaskManager;
-      dbService: ItemMembershipService;
-    };
-  }
-}
 export declare class ItemMembershipService {
   private static allColumns;
   /**
