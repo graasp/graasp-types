@@ -1,4 +1,4 @@
-import { Session } from 'fastify-secure-session';
+import { Session } from '@fastify/secure-session';
 
 import { Actor } from '../../../interfaces/actor';
 import { UnknownExtra } from '../../../interfaces/extra';
@@ -21,4 +21,5 @@ export interface Member<E extends UnknownExtra = UnknownExtra> extends Actor {
     extra: E;
     createdAt: string;
     updatedAt: string;
+    password?: string;
 }
