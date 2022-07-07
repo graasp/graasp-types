@@ -1,3 +1,3 @@
 export interface Actor {
-    id: string;
+  id: string;
 }

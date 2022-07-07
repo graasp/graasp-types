@@ -1,8 +1,9 @@
 import { Item } from './item';
+
 export interface ItemMoveHookHandlerExtraData {
-    destination: Item;
+  destination: Item;
 }
 export interface ItemCopyHookHandlerExtraData {
-    original: Item;
-    shouldCopyTags?: boolean
+  original: Item;
+  shouldCopyTags?: boolean;
 }

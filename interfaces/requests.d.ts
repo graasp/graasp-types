@@ -1,9 +1,9 @@
 export interface IdParam {
-    id: string;
+  id: string;
 }
 export interface IdsParams {
-    id: string[];
+  id: string[];
 }
 export interface ParentIdParam {
-    parentId?: string;
+  parentId?: string;
 }
