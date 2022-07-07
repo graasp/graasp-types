@@ -7,10 +7,12 @@ declare module 'fastify' {
         session: Session;
     }
 }
+
 export declare enum MemberType {
     Individual = "individual",
     Group = "group"
 }
+
 export interface Member<E extends UnknownExtra = UnknownExtra> extends Actor {
     name: string;
     email: string;
@@ -18,4 +20,5 @@ export interface Member<E extends UnknownExtra = UnknownExtra> extends Actor {
     extra: E;
     createdAt: string;
     updatedAt: string;
+    password?: string;
 }
