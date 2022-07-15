@@ -1,4 +1,4 @@
-export declare const enum PermissionLevel {
+export declare enum PermissionLevel {
     Read = "read",
     Write = "write",
     Admin = "admin"
